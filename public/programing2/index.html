@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <script src="class.Grass.js"></script>
+    <script src="class.GrassEater.js"></script>
+    <script src="class.Predator.js"></script>
+    <script src="class.Water.js"></script>
+    <script src="class.Fish.js"></script>
+    <script src="script.js"></script>
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        h1 {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h1>Ծրագրավորում II Ստեփանակերտ</h1>
+            </tr>
+            <tr>
+                <h1>Հրանտ Շահրամանյան</h1>
+            </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Գույն</th>
+                <th scope="col">Նկարագրություն</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                        <th scope="row">1</th>
+                        <td scope="row" style="background-color:#B3672B;"></td>
+                        <td>Ազատ տարածություն:</td>
+                    </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td scope="row" style="background-color:#009900;"></td>
+                <td>Սա խոտն է, որը տարածվում է 8 ցիկլը մեկ, տարբեր ուղղություններով:</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td scope="row" style="background-color:#D9DDDC"></td>
+                <td>Սա խոտակերն է, որը ունի 50 կյանք, ուտում է խոտ:Ամեն անգամ խոտ ուտելուց նրա կյանքերի թիվը ավելանում է 1-ով ,եթե նրա կյանքը մեծ կամ հավասար լինի 55-ից և նա խոտ ուտի ապա նա կբազմանա: Նա շարժվում է ազատ վանդակներով: Եթե 50 քայլի ընթացքում խոտ չուտի նա կմահանա: </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td scope="row" style="background-color:#003399;"></td>
+                <td>Սա գիշատիչն է, որը ունի 100 կյանք, ուտում է խոտակերին:Ամեն անգամ խոտակեր ուտելուց նրա կյանքերի թիվը ավելանում է 1-ով ,եթե նրա կյանքը մեծ կամ հավասար լինի 80-ից և նա խոտակեր ուտի ապա նա կբազմանա: Նա շարժվում է ազատ վանդակներով և խոտի վրայով: Եթե 100 քայլի ընթացքում խոտակեր չուտի նա կմահանա:</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td scope="row" style="background-color:#00ccff;"></td>
+                <td>Սա ջուրն է, որը տարածվում է ազատ վանդակներում, և եթե նրա մեջ ընկնեն խոտակերները կամ գիշատիչները ապա նրանք կմահանան: Եթե ջրի քանակությունը հասնում է 100-ի ապա նրա մեջ կառաջանան 5 հատ ձուկ: </td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td scope="row" style="background-color:#ffcc00;"></td>
+                <td>Սա ձուկն է, որը շարժվում է ջրի վրայով: </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
+
+
