@@ -1,17 +1,18 @@
+let count =true
 //! Requiring modules  --  START
 var Grass = require("./modules/Grass.js");
 var GrassEater = require("./modules/GrassEater.js");
-var Hunter = require("./modules/Hunter.js");
-var Terminator = require("./modules/Terminator.js");
-var Titan = require("./modules/Titan.js");
+var Predator = require("./modules/Predator.js");
+var Fish = require("./modules/Fish.js");
+var Water = require("./modules/Water.js");
 let random = require('./modules/random');
 //! Requiring modules  --  END
 
 grassArr = [];
-eatArr = [];
-huntArr = [];
-termArr = [];
-titanArr = [];
+grassEaterArr = [];
+predatorArr = [];
+waterArr = [];
+fishArr = [];
 matrix = [];
 
 
@@ -19,14 +20,13 @@ matrix = [];
 grassHashiv = 0;
 eatHashiv = 0;
 huntHashiv = 0;
-termHashiv = 0;
-titanHashiv = 0;
+waterHashiv = 0;
 // statistics end
 
 // time = 0
 //! Creating MATRIX -- START
 
-function matrixGenerator(matrixSize, grass, eat, hunt, term, titan) {
+function matrixGenerator(matrixSize, grass, eat, hunt, water, fish) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
         for (let o = 0; o < matrixSize; o++) {
@@ -48,18 +48,18 @@ function matrixGenerator(matrixSize, grass, eat, hunt, term, titan) {
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 3;
     }
-    for (let i = 0; i < term; i++) {
+    for (let i = 0; i < water; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 4;
     }
-    for (let i = 0; i < titan; i++) {
+    for (let i = 0; i < fish; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(20, 25, 20, 15, 10, 2);
+matrixGenerator(40, 20, 15, 10, 1);
 //! Creating MATRIX -- END
 
 //! SERVER STUFF  --  START
@@ -78,8 +78,8 @@ function creatingObjects() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 2) {
-                var grassEater = new GrassEater(x, y);
-                eatArr.push(grassEater);
+                var eat = new GrassEater(x, y);
+                grassEaterArr.push(eat);
                 eatHashiv++;
             } else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
@@ -87,19 +87,18 @@ function creatingObjects() {
                 grassHashiv++
             }
             else if (matrix[y][x] == 3) {
-                var hunt = new Hunter(x, y);
-                huntArr.push(hunt);
+                var hunt = new Predator(x, y);
+                predatorArr.push(hunt);
                 huntHashiv++
             }
             else if (matrix[y][x] == 4) {
-                var term = new Terminator(x, y);
-                termArr.push(term);
-                termHashiv++
+                var water = new Water(x, y);
+                waterArr.push(water);
+                waterHashiv++
             }
             else if (matrix[y][x] == 5) {
-                var titan = new Titan(x, y);
-                titanArr.push(titan);
-                titanHashiv++
+                var fish = new Fish(x, y);
+                fishArr.push(fish);
             }
         }
     }
@@ -111,10 +110,19 @@ let exanak = 0
 function game() {
     exanak++;
     if (exanak <= 10){
-        weather = "summer"
-    }else if (exanak <= 20){
-        weather = "autumn"
-    }else if (exanak > 20){
+        weather = "գարուն"
+    }
+    else if (exanak <= 20){
+        weather = "ամառ"
+    }
+    else if (exanak <= 30){
+        weather = "աշուն"
+    }
+    else if (exanak <= 40){
+        weather = "ձմեռ"
+    }
+    else if (exanak = 50)
+    {
         exanak = 0
     }
 
@@ -124,24 +132,41 @@ function game() {
             grassArr[i].mul();
         }
     }
-    if (eatArr[0] !== undefined) {
-        for (var i in eatArr) {
-            eatArr[i].eat();
+    if (grassEaterArr[0] !== undefined) {
+        for (var i in grassEaterArr) {
+            grassEaterArr[i].eat();
         }
     }
-    if (huntArr[0] !== undefined) {
-        for (var i in huntArr) {
-            huntArr[i].eat();
+    if (predatorArr[0] !== undefined) {
+        for (var i in predatorArr) {
+            predatorArr[i].eat();
         }
     }
-    if (termArr[0] !== undefined) {
-        for (var i in termArr) {
-            termArr[i].eat();
+    if (waterArr[0] !== undefined) {
+        for (var i in waterArr) {
+            waterArr[i].mul();
+            
+            if (waterArr.length == 50 && count ) {
+                count =false
+                let curr = random(waterArr);
+                for (var l = 0; l < 5; l++) {
+                    matrix[curr.y][curr.x] = 5;
+                    let fish = new Fish(curr.x, curr.y);
+                    fishArr.push(fish)
+                }
+    
+                for (let i in waterArr) {
+                    if (waterArr[i].x == curr.x && waterArr[i].y == curr.y) {
+                        waterArr.splice(i, 1)
+                    }
+                }
+                 
+            }
         }
     }
-    if (titanArr[0] !== undefined) {
-        for (var i in titanArr) {
-            titanArr[i].eat();
+    if (fishArr[0] !== undefined) {
+        for (var i in fishArr) {
+            fishArr[i].move();
         }
     }
 
@@ -152,8 +177,7 @@ function game() {
         grassLiveCounter: grassArr.length,
         eatCounter: eatHashiv,
         huntCounter: huntHashiv,
-        termCounter: termHashiv,
-        titanCounter: titanHashiv,
+        waterCounter: waterHashiv,
         weather: weather
     }
 
@@ -163,4 +187,4 @@ function game() {
 
 
 
-setInterval(game, 1000)
+setInterval(game, 300)
