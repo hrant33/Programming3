@@ -29,7 +29,7 @@ module.exports = class Water extends LiveForm {
         let newCell = random(emptyCells);
 
         if (newCell && this.multiply >= 8) {
-
+            waterHashiv++;
             let x = newCell[0];
             let y = newCell[1];
 

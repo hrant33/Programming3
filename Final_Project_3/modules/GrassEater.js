@@ -67,7 +67,7 @@ module.exports = class GrassEater extends LiveForm {
             this.y = y;
             this.x = x;
 
-            if (this.life >= 55) 
+            if (this.life >= 80) 
             {
                 this.mul();
             }

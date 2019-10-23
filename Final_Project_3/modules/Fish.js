@@ -22,13 +22,14 @@ module.exports = class Fish extends LiveForm {
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
-    }
+    } 
     move() {
 
         let emptyCells = this.chooseCell(4);
         let newCell = random(emptyCells);
 
         if (newCell) {
+           
             let x = newCell[0];
             let y = newCell[1];
 
